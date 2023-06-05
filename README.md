@@ -1,6 +1,6 @@
 # Sieve
 
-Node.js /Typescript types and services for [Biarity/Sieve](https://github.com/Biarity/Sieve).
+Node.js/Typescript types and services for [Biarity/Sieve](https://github.com/Biarity/Sieve).
 
 [![Build Status](https://ci.mastermindzh.tech/api/badges/Mastermindzh/sieve-ts/status.svg)](https://ci.mastermindzh.tech/Mastermindzh/sieve-ts)
 
@@ -17,11 +17,21 @@ Node.js /Typescript types and services for [Biarity/Sieve](https://github.com/Bi
 ## HttpParam or Sieve
 
 If you use the Sieve package for filtering in your (.NET) back-end then you probably only have to look at the `SieveFilterService`.
-If however, you use this package for multiple back-ends you can use the `HttpParamFilterService` as the fall-back to use "regular" http-params
+If however, you use this package for multiple back-ends you can use the `HttpParamFilterService` as the fall-back to use "regular" HTTP-params
 
 ## Usage
 
-1. construct a filter using the models:
+1. install & import the package:
+
+   ```sh
+   yarn add sieve-ts
+   ```
+
+   ```ts
+    import { Filter, SieveFilterService } from "sieve-ts";
+   ```
+
+2. construct a filter using the models:
 
     ```ts
      const filter = new Filter({
@@ -43,7 +53,7 @@ If however, you use this package for multiple back-ends you can use the `HttpPar
     })
     ```
 
-2. create a service and use it:
+3. create a service and use it:
 
     ```ts
     // user either one, both will return a string
@@ -51,13 +61,13 @@ If however, you use this package for multiple back-ends you can use the `HttpPar
     const service = new HttpParamService();
     ```
 
-3. use the service to create a usable value:
+4. use the service to create a usable value:
 
     ```ts
     console.log(service.toValue(filter));
     ```
 
-4. Observe the output:
+5. Observe the output:
 
     ```ts
     // The Sieve service will have combined the fields together into a single filter:

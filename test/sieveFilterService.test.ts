@@ -40,39 +40,6 @@ describe(`${serviceName} - shared filter and sorting tests`, () => {
     "page=1&pageSize=20&Filters=firstField==firstValue,(combinedField|combinedField2)@=*combinedFieldValue,combinedValue@=combinedValue1|combinedValue2,(everythingCombined1|everythingCombined2)!_=everythingCombinedValue1|everythingCombinedValue2&Sorts=test,-sortField1",
   );
 
-  test("test", () => {
-    const filter = new Filter({
-      pageIndex: 2,
-      pageSize: 45,
-      sorts: [
-        {
-          field: "testField",
-          direction: SortDirection.Ascending,
-        },
-      ],
-      filters: [
-        {
-          fields: ["firstField", "secondField"],
-          values: ["singleValue"],
-          operator: Operators.CONTAINS,
-        },
-      ],
-    });
-    const sieveService = new SieveFilterService();
-
-    const httpService = new HttpParamService();
-
-    console.log(sieveService.toValue(filter));
-    console.log(httpService.toValue(filter));
-
-    const filters = sieveService.parse(
-      "page=3&pageSize=45&Filters=(firstField|secondField)@=singleValue&Sorts=testField",
-    );
-    console.log(JSON.stringify(filters, null, 2));
-
-    expect(true).toBe(true);
-  });
-});
 
 describe(`${serviceName} - custom tests`, () => {
   test(`${serviceName}.getFilter should be able to extract page info from an url`, () => {
