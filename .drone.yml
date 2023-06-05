@@ -1,0 +1,38 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: install
+    image: node:19.4.0
+    commands:
+      - yarn install
+
+  - name: test
+    image: node:19.4.0
+    commands:
+      - yarn test
+
+  - name: build
+    image: node:19.4.0
+    commands:
+      - yarn build
+
+  - name: publish
+    image: node
+    environment:
+      NPM_USERNAME:
+        from_secret: npm_username
+      NPM_KEY:
+        from_secret: npm_key
+    commands:
+      - echo "init-author-name=Rick van Lieshout" >> .npmrc
+      - echo "init-author-email=$NPM_USERNAME" >> .npmrc
+      - echo "init-author-url=http://rickvanlieshout.com/" >> .npmrc
+      - echo "init-license=MIT" >> .npmrc
+      - echo "//registry.npmjs.org/:_authToken=$NPM_KEY" >> .npmrc
+      - echo "always-auth=true" >> .npmrc
+      - npm publish
+    when:
+      branch:
+        - master
