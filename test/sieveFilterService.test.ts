@@ -1,10 +1,4 @@
-import {
-  Filter,
-  HttpParamService,
-  Operators,
-  SieveFilterService,
-  SortDirection,
-} from "../src/index";
+import { Operators, SieveFilterService, SortDirection } from "../src/index";
 
 import {
   AllGenericFilterServiceTests,
