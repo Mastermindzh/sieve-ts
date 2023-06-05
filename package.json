@@ -1,11 +1,15 @@
 {
   "name": "sieve-ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "author": "Rick van Lieshout",
   "main": "dist/index.js",
   "module": "dist/sieve-ts.esm.js",
   "typings": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://git.mastermindzh.tech/mastermindzh/sieve-ts"
+  },
   "files": [
     "dist",
     "src"
