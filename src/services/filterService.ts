@@ -110,7 +110,7 @@ export abstract class FilterService<T> {
     return Object.entries(extraParameters).reduce((previous, [key, value]) => {
       const segment = this.getUrlSegment(key, value);
       if (segment) {
-        return `${previous}&${this.getUrlSegment(key, value)}`;
+        return `${previous}&${segment}`;
       }
       return previous;
     }, "");
