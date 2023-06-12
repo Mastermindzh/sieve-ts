@@ -11,7 +11,7 @@ steps:
   - name: test
     image: node:19.4.0
     commands:
-      - yarn test
+      - yarn test --ci --coverage
 
   - name: build
     image: node:19.4.0
@@ -30,9 +30,10 @@ steps:
       - echo "init-author-email=$NPM_USERNAME" >> .npmrc
       - echo "init-author-url=http://rickvanlieshout.com/" >> .npmrc
       - echo "init-license=MIT" >> .npmrc
-      - echo "//registry.npmjs.org/:_authToken=$NPM_KEY" >> .npmrc
-      - echo "always-auth=true" >> .npmrc
+      - npm set //registry.npmjs.org/:_authToken $NPM_KEY
       - npm publish
     when:
       branch:
         - master
+      event:
+        - push

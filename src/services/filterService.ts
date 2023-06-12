@@ -1,3 +1,4 @@
+import { ExtraParameters } from "../models/extraParameters";
 import { Filter, FilterItem } from "../models/index";
 import { UtilityService } from "../utilityService";
 
@@ -7,15 +8,18 @@ export abstract class FilterService<T> {
    *
    * @param filter
    */
-  public abstract getFilterValue(filter: Filter): T;
+  public abstract getFilterValue(
+    filter: Filter,
+    extraParams?: ExtraParameters,
+  ): T;
 
   /**
    * Given a filter return the constructed filter
    *
    * @param filter
    */
-  public toValue(filter: Filter): T {
-    return this.getFilterValue(filter);
+  public toValue(filter: Filter, extraParams?: ExtraParameters): T {
+    return this.getFilterValue(filter, extraParams);
   }
 
   /**
@@ -93,5 +97,22 @@ export abstract class FilterService<T> {
       return `${param}=${value}`;
     }
     return "";
+  }
+
+  /**
+   * Return a url fragment with extra parameters.
+   * e.g param=value&param2=2
+   *
+   * @param param
+   * @param value
+   */
+  public getExtraParameters(extraParameters: ExtraParameters) {
+    return Object.entries(extraParameters).reduce((previous, [key, value]) => {
+      const segment = this.getUrlSegment(key, value);
+      if (segment) {
+        return `${previous}&${segment}`;
+      }
+      return previous;
+    }, "");
   }
 }

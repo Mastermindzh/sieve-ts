@@ -102,6 +102,51 @@ export const updateFilterWithPartialTests = (
 };
 
 /**
+ * Tests whether the services handle extra parameters
+ * @param serviceName
+ * @param service
+ * @param data
+ */
+export const extraParametersTests = (
+  serviceName: string,
+  service: FilterService<any>,
+  data = {
+    filter: {
+      pageIndex: 0,
+      pageSize: 20,
+      sorts: [sorts.singleSort],
+      filters: [filters.singleFieldSingleValue],
+    } as Filter,
+    extraParameters: {
+      firstKey: "firstValue",
+      secondKey: "secondValue",
+    },
+    results: {
+      firstKey: "firstKey=firstValue",
+      secondKey: "secondKey=secondValue",
+      orderedUrlResult: "&firstKey=firstValue&secondKey=secondValue",
+    },
+  },
+) => {
+  test(`${serviceName} correctly returns a string containing all 'key=value' url segments`, () => {
+    const serviceResult = service.getExtraParameters(data.extraParameters);
+    expect(serviceResult === data.results.orderedUrlResult).toBeTruthy();
+  });
+
+  test(`${serviceName} correctly returns the service value containing the extra params`, () => {
+    const serviceResult = service.toValue(data.filter, data.extraParameters);
+    expect(serviceResult.includes(data.results.orderedUrlResult)).toBeTruthy();
+  });
+  test(`${serviceName} ignores null params`, () => {
+    const serviceResult = service.toValue(data.filter, {
+      ...data.extraParameters,
+      ...{ emptyParam: null },
+    });
+    expect(serviceResult.includes(data.results.orderedUrlResult)).toBeTruthy();
+  });
+};
+
+/**
  * ShortHand method to call all base class functions
  *
  * @param serviceName
@@ -114,6 +159,7 @@ export const AllGenericFilterServiceTests = (
   pageAndPageSizeFilterTest(serviceName, service);
   urlSegmentTests(serviceName, service);
   updateFilterWithPartialTests(serviceName, service);
+  extraParametersTests(serviceName, service);
 };
 
 /**

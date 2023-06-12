@@ -10,6 +10,7 @@ Node.js/Typescript types and services for [Biarity/Sieve](https://github.com/Bia
   - [HttpParam or Sieve](#httpparam-or-sieve)
   - [Usage](#usage)
     - [Retrieving filter objects from the URL](#retrieving-filter-objects-from-the-url)
+    - [Extra/custom parameters](#extracustom-parameters)
   - [Customized Sieve instances](#customized-sieve-instances)
 
 <!-- tocstop -->
@@ -93,6 +94,14 @@ const filters = sieveService.parse(
 
 // output
 console.log(JSON.stringify(filters, null, 2));
+```
+
+### Extra/custom parameters
+
+To include extra/custom parameters simply call the `toValue` or `getFilterValue` functions with the optional second argument (key:value):
+
+```ts
+console.log(service.toValue(filter, {firstKey: "firstValue", secondKey: "secondValue"}));
 ```
 
 ## Customized Sieve instances
