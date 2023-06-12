@@ -1,6 +1,6 @@
 {
   "name": "sieve-ts",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "license": "MIT",
   "author": "Rick van Lieshout",
   "main": "dist/index.js",
@@ -22,7 +22,7 @@
     "size": "size-limit",
     "start": "dts watch",
     "test": "dts test",
-    "test-verbose": "dts test --silent=false"
+    "test-verbose": "dts test --silent=false --verbose"
   },
   "husky": {
     "hooks": {

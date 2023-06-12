@@ -1,4 +1,5 @@
 import {
+  ExtraParameters,
   Filter,
   FilterItem,
   Operators,
@@ -31,8 +32,12 @@ export class SieveFilterService extends FilterService<string> {
    * Returns a fully formatted sieve filter string
    *
    * @param filter filter to generate string from
+   * @param extraParameters extra key/value pairs to add onto the return value
    */
-  public getFilterValue(filter: Filter): string {
+  public getFilterValue(
+    filter: Filter,
+    extraParameters?: ExtraParameters,
+  ): string {
     // adds pagination
     let currentFilter = this.getPageAndPageSizeFilter(
       filter.pageIndex,
@@ -41,6 +46,10 @@ export class SieveFilterService extends FilterService<string> {
 
     currentFilter += this.addFilters(filter.filters);
     currentFilter += this.addSorts(filter.sorts);
+
+    if (extraParameters) {
+      currentFilter += this.getExtraParameters(extraParameters);
+    }
     return currentFilter;
   }
 

@@ -1,4 +1,10 @@
-import { Filter, FilterItem, SortDirection, SortItem } from "../models/index";
+import {
+  ExtraParameters,
+  Filter,
+  FilterItem,
+  SortDirection,
+  SortItem,
+} from "../models/index";
 import { FilterService } from "./filterService";
 
 export class HttpParamService extends FilterService<string> {
@@ -11,7 +17,10 @@ export class HttpParamService extends FilterService<string> {
    *
    * @param filter
    */
-  public getFilterValue(filter: Filter): string {
+  public getFilterValue(
+    filter: Filter,
+    extraParameters?: ExtraParameters,
+  ): string {
     // adds pagination
     let currentFilter = this.getPageAndPageSizeFilter(
       filter.pageIndex,
@@ -20,6 +29,10 @@ export class HttpParamService extends FilterService<string> {
 
     currentFilter += this.addFilters(filter.filters);
     currentFilter += this.addSorts(filter.sorts);
+
+    if (extraParameters) {
+      currentFilter += this.getExtraParameters(extraParameters);
+    }
 
     return currentFilter;
   }
