@@ -1,4 +1,5 @@
 export class UtilityService {
+  // BEGIN-NOSCAN
   /**
    * Clones an entire JS object including functions etc
    * from: https://stackoverflow.com/a/4460624
@@ -53,6 +54,9 @@ export class UtilityService {
 
     return result;
   }
+
+  // END-NOSCAN
+
   /**
    * Check whether two arrays are equal
    *
