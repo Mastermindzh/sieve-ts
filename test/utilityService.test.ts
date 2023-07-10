@@ -64,6 +64,7 @@ describe("UtilityService.deepClone - Should deeply clone an object even if parti
   test("deepClone clones a complex object with primitives correctly by removing the primitive", () => {
     // add a primitive into the mix (note, tslint should stop us...)
     // tslint:disable-next-line: no-construct
+    // NOSONAR
     complicatedObject.level1.primitive = new String("test");
 
     const clone = UtilityService.deepClone(complicatedObject);
@@ -97,8 +98,6 @@ describe("UtilityService.deepClone - Should deeply clone an object even if parti
     const returnValue = "a";
 
     const Test = class {
-      constructor() {}
-
       test() {
         return returnValue;
       }

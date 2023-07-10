@@ -2,7 +2,7 @@
 
 Node.js/Typescript types and services for [Biarity/Sieve](https://github.com/Biarity/Sieve).
 
-[![Build Status](https://ci.mastermindzh.tech/api/badges/Mastermindzh/sieve-ts/status.svg)](https://ci.mastermindzh.tech/Mastermindzh/sieve-ts)
+[![Build Status](https://ci.mastermindzh.tech/api/badges/Mastermindzh/sieve-ts/status.svg)](https://ci.mastermindzh.tech/Mastermindzh/sieve-ts) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Mastermindzh_sieve-ts&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Mastermindzh_sieve-ts) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Mastermindzh_sieve-ts&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Mastermindzh_sieve-ts) [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Mastermindzh_sieve-ts&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Mastermindzh_sieve-ts)
 
 <!-- toc -->
 
